@@ -29,12 +29,27 @@ type User {
   }
 
   type Query {
+    me: User
     users: [User]
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
   }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
 `;
+// PROJECT: ⬆︎ TypeDef for JWT auth // MODULE 21.2.4
+
+
 
 // export the typeDefs
 module.exports = typeDefs;
+
