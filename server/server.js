@@ -5,7 +5,7 @@ const path = require('path');
 
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
-// PROJECT: ⬇︎ Import authorization middleware // MODULE 21.2.5
+// AUTH: ⬇︎ Import authorization middleware // MODULE 21.2.5
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware  // PROJECT: Include context for middleware // MODULE 21.2.5
+  context: authMiddleware  // AUTH: Include context for middleware // MODULE 21.2.5
 });
 
 const app = express();

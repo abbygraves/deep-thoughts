@@ -49,7 +49,7 @@ type User {
     user: User
   }
 `;
-// PROJECT: ⬆︎ TypeDef for JWT auth // MODULE 21.2.4
+// AUTH: ⬆︎ TypeDef for JWT auth // MODULE 21.2.4
 
 
 
