@@ -1,7 +1,7 @@
 const { User, Thought } = require("../models");
-// AUTH: ⬇︎ Need to require for auth purpose // MODULE 21.2.3
+// AUTH: Back⎟⬇︎ Need to require for auth purpose // MODULE 21.2.3
 const { AuthenticationError } = require("apollo-server-express");
-// AUTH: ⬇︎ Import for JWT webtoken auth functionality // MODULE 21.2.4
+// AUTH: Back⎟⬇︎ Import for JWT webtoken auth functionality // MODULE 21.2.4
 const { signToken } = require("../utils/auth");
  
 
@@ -10,7 +10,7 @@ const resolvers = {
  //  INFO: Queries are used to fetch data 𛰧GET𛰨  
 
   Query: {
-    // AUTH: ⬇︎ me() method  // MODULE 21.2.5
+    // AUTH: Back⎟⬇︎ me() method  // MODULE 21.2.5
     // ME QUERY
     me: async (parent, args, context) => {
       if (context.user) {
@@ -51,7 +51,7 @@ const resolvers = {
   /// MUTATION OBJECT
   //  INFO: Mutations are used to modify data 𛰧POST, PUT, DELETE𛰨
   Mutation: {
-    // AUTH: ⬇︎ For authentication - add user // MODULE 21.2.3
+    // AUTH: Back⎟⬇︎ For authentication - add user // MODULE 21.2.3
     // ADD USER MUTATION
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -59,7 +59,7 @@ const resolvers = {
 
       return { token, user };
     },
-    // AUTH: ⬇︎ For authentication - login mutation // MODULE 21.2.3
+    // AUTH: Back⎟⬇︎ For authentication - login mutation // MODULE 21.2.3
     // LOGIN MUTATION
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
