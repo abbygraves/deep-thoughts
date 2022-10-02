@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-// AUTH: Front⎟⬇︎ import hook and addUser mutation // Module: 21.5.3
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
+// AUTH: Front⎟⬇︎ import AuthService funuctionality // Module: 21.5.4
+import Auth from '../utils/auth';
+
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -9,7 +11,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  // AUTH: Front⎟⬇︎ Implement useMutation hook // Module: 21.5.3
+  // AUTH: Front⎟⬇︎  // Module: 21.5.
   const [addUser, { error }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -22,18 +24,16 @@ const Signup = () => {
     });
   };
 
-  // AUTH: Front⎟⬇︎ Update handleFormSubmit
-  // submit form (notice the async!)
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // use try/catch instead of promises to handle errors
+  // AUTH: Front⎟⬇︎ Update try/catch to set token to local storage in handleFormSubmit // Module: 21.5.4
     try {
-      // execute addUser mutation and pass in variable data from form
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: { ...formState }
       });
-      console.log(data);
+    
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }

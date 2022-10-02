@@ -1,8 +1,8 @@
-// AUTH: Front⎟⬇︎  Setup Login.js component page // Module: 21.5.3
-
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+// AUTH: Front⎟⬇︎
+import Auth from "../utils/auth";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -22,15 +22,17 @@ const Login = (props) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // AUTH: Front⎟⬇︎
     try {
       const { data } = await login({
         variables: { ...formState },
       });
 
-      console.log(data);
+      Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
+    
     // clear form values
     setFormState({
       email: "",
